@@ -1,4 +1,4 @@
-Sessions for the XP Framework ChangeLog
+Cookie sessions for the XP Framework ChangeLog
 ========================================================================
 
 ## ?.?.? / ????-??-??

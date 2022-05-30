@@ -1,4 +1,4 @@
-Sessions for the XP Framework
+Cookie sessions for the XP Framework
 ========================================================================
 
 [![Build status on GitHub](https://github.com/xp-forge/cookie-sessions/workflows/Tests/badge.svg)](https://github.com/xp-forge/cookie-sessions/actions)
@@ -8,11 +8,10 @@ Sessions for the XP Framework
 [![Supports PHP 8.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-8_0plus.svg)](http://php.net/)
 [![Latest Stable Version](https://poser.pugx.org/xp-forge/cookie-sessions/version.png)](https://packagist.org/packages/xp-forge/sessions)
 
-Cookie-based sessions require no serverside storage and thus scale very well.
+Cookie-based session implementation for the [sessions library](https://github.com/xp-forge/sessions/pull/10). Purely client-side, they require no serverside storage and thus scale very well. However, they also come with downsides, [discussed below](https://github.com/xp-forge/cookie-sessions#security).
 
 Usage
 -----
-
 Inside the routing setup:
 
 ```php
