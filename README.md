@@ -68,5 +68,5 @@ An example:
 
 See also
 --------
-https://github.com/SaintFlipper/EncryptedSession
-https://blog.miguelgrinberg.com/post/how-secure-is-the-flask-user-session
+* https://github.com/SaintFlipper/EncryptedSession
+* https://blog.miguelgrinberg.com/post/how-secure-is-the-flask-user-session
