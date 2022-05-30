@@ -20,13 +20,6 @@ use web\session\cookie\{Session, Encryption, Compression};
  */
 class CookieBased extends Sessions {
   private $encryption, $compression;
-  private $attributes= [
-    'path'     => '/',
-    'secure'   => true,
-    'domain'   => null,
-    'httpOnly' => true,
-    'sameSite' => 'Lax'
-  ];
 
   /**
    * Creates an new cookie-based session
@@ -41,76 +34,6 @@ class CookieBased extends Sessions {
       $this->encryption= Encryption::using($arg instanceof Secret ? $arg : new Secret($arg));
     }
     $this->compression= new Compression();
-  }
-
-  /**
-   * Sets the session transport
-   *
-   * @param  web.session.Transport $transport
-   * @return self
-   */
-  public function via($transport) {
-
-    // Special-case handling for Cookies-transport
-    if ($transport instanceof Cookies) {
-      $this->attributes= $transport->attributes();
-    }
-
-    return parent::via($transport);
-  }
-
-  /**
-   * Switch whether to also transmit via insecure connections (HTTP).
-   *
-   * @param  bool $insecure
-   * @return self
-   */
-  public function insecure($insecure= true) {
-    $this->attributes['secure']= !$insecure;
-    return $this;
-  }
-
-  /**
-   * Locates an existing and valid session; returns NULL if there is no such session.
-   *
-   * @param  web.Request $request
-   * @return ?web.session.ISession
-   */
-  public function locate($request) {
-    $cookie= $request->cookie($this->name);
-    return null === $cookie ? null : $this->open($cookie);
-  }
-
-  /**
-   * Attaches session to response 
-   *
-   * @param  web.session.ISession $session
-   * @param  web.Response $response
-   * @return void
-   */
-  public function attach($session, $response) {
-    $response->cookie((new Cookie($this->name, $session->id()))
-      ->maxAge($this->duration())
-      ->path($this->attributes['path'])
-      ->secure($this->attributes['secure'])
-      ->domain($this->attributes['domain'])
-      ->httpOnly($this->attributes['httpOnly'])
-      ->sameSite($this->attributes['sameSite'])
-    );
-  }
-
-  /**
-   * Detaches session from response 
-   *
-   * @param  web.session.ISession $session
-   * @param  web.Response $response
-   * @return void
-   */
-  public function detach($session, $response) {
-    $response->cookie((new Cookie($this->name(), null))
-      ->path($this->attributes['path'])
-      ->domain($this->attributes['domain'])
-    );
   }
 
   /**
