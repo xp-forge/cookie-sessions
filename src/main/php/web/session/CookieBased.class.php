@@ -2,7 +2,6 @@
 
 use lang\FormatException;
 use util\Secret;
-use web\Cookie;
 use web\session\cookie\{Session, Encryption, Compression};
 
 /**
