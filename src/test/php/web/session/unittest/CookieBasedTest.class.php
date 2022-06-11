@@ -51,9 +51,9 @@ class CookieBasedTest {
 
   #[Test]
   public function via() {
-    $transport= (new Cookies())->path('/sub');
+    $cookies= (new Cookies())->path('/sub');
     $sessions= $this->fixture();
-    Assert::equals($transport, $sessions->via($transport)->transport());
+    Assert::equals($cookies, $sessions->via($cookies)->cookies());
   }
 
   #[Test]
