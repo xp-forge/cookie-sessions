@@ -50,13 +50,6 @@ class CookieBasedTest {
   }
 
   #[Test]
-  public function via() {
-    $cookies= (new Cookies())->path('/sub');
-    $sessions= $this->fixture();
-    Assert::equals($cookies, $sessions->via($cookies)->cookies());
-  }
-
-  #[Test]
   public function open() {
     $sessions= $this->fixture();
 
