@@ -3,6 +3,8 @@ Cookie sessions for the XP Framework ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #2: Migrate to new testing library - @thekid
+
 ## 0.2.0 / 2022-06-11
 
 * Bumped minimum required version of sessions library to 3.0.0 - @thekid
