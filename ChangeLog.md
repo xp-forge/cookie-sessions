@@ -3,6 +3,10 @@ Cookie sessions for the XP Framework ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.3.0 / 2024-03-24
+
+* Dropped support for XP <= 9, see xp-framework/rfc#341 - @thekid
+* Made compatible with XP 12 - @thekid
 * Added PHP 8.4 to the test matrix - @thekid
 * Merged PR #2: Migrate to new testing library - @thekid
 
