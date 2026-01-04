@@ -1,39 +1,35 @@
 <?php namespace web\session\cookie;
 
-use web\session\{ISession, SessionInvalid};
+use web\session\{Persistence, SessionInvalid};
 
 /**
  * A session stored in a cookie
  *
  * @see   web.session.CookieBased
  */
-class Session implements ISession {
-  private $sessions, $values, $expire;
+class Session extends Persistence {
+  private $values;
   private $id= null;
-  private $modified= false;
 
   /**
    * Creates a new cookie-based session
    *
    * @param  web.session.Sessions $sessions
    * @param  [:var] $values
-   * @param  int $expire
+   * @param  int $expires
    */
-  public function __construct($sessions, $values, $expire) {
-    $this->sessions= $sessions;
+  public function __construct($sessions, $values, $expires) {
+    parent::__construct($sessions, false, $expires);
     $this->values= $values;
-    $this->expire= $expire;
   }
 
   /** @return string */
-  public function id() { return $this->id ?? $this->id= $this->sessions->serialize($this->values, $this->expire); }
-
-  /** @return bool */
-  public function valid() { return time() < $this->expire; }
+  public function id() { return $this->id ?? $this->id= $this->sessions->serialize($this->values, $this->expires); }
 
   /** @return void */
   public function destroy() {
-    $this->expire= time() - 1;
+    $this->expires= time() - 1;
+    $this->detached= false;
   }
 
   /**
@@ -54,12 +50,12 @@ class Session implements ISession {
    * @throws web.session.SessionInvalid
    */
   public function register($name, $value) {
-    if (time() >= $this->expire) {
+    if (time() >= $this->expires) {
       throw new SessionInvalid($this->id());
     }
 
     $this->values[$name]= [$value];
-    $this->modified= true;
+    $this->detached= true;
     $this->id= null;
   }
 
@@ -72,7 +68,7 @@ class Session implements ISession {
    * @throws web.session.SessionInvalid
    */
   public function value($name, $default= null) {
-    if (time() >= $this->expire) {
+    if (time() >= $this->expires) {
       throw new SessionInvalid($this->id());
     }
 
@@ -87,39 +83,14 @@ class Session implements ISession {
    * @throws web.session.SessionInvalid
    */
   public function remove($name) {
-    if (time() >= $this->expire) {
+    if (time() >= $this->expires) {
       throw new SessionInvalid($this->id());
     }
 
     if (!isset($this->values[$name])) return false;
     unset($this->values[$name]);
-    $this->modified= true;
+    $this->detached= true;
     $this->id= null;
     return true;
-  }
-
-  /**
-   * Closes this session
-   *
-   * @return void
-   */
-  public function close() {
-    // NOOP
-  }
-
-  /**
-   * Transmits this session to the response
-   *
-   * @param  web.Response $response
-   * @return void
-   */
-  public function transmit($response) {
-    if (time() >= $this->expire) {
-      $this->sessions->detach($this, $response);
-    } else if ($this->modified) {
-      $this->sessions->attach($this, $response);
-      $this->modified= false;
-    }
-    $this->close();
   }
 }
