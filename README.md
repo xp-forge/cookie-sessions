@@ -4,9 +4,9 @@ Cookie sessions for the XP Framework
 [![Build status on GitHub](https://github.com/xp-forge/cookie-sessions/workflows/Tests/badge.svg)](https://github.com/xp-forge/cookie-sessions/actions)
 [![XP Framework Module](https://raw.githubusercontent.com/xp-framework/web/master/static/xp-framework-badge.png)](https://github.com/xp-framework/core)
 [![BSD Licence](https://raw.githubusercontent.com/xp-framework/web/master/static/licence-bsd.png)](https://github.com/xp-framework/core/blob/master/LICENCE.md)
-[![Requires PHP 7.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_0plus.svg)](http://php.net/)
+[![Requires PHP 7.4+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_4plus.svg)](http://php.net/)
 [![Supports PHP 8.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-8_0plus.svg)](http://php.net/)
-[![Latest Stable Version](https://poser.pugx.org/xp-forge/cookie-sessions/version.png)](https://packagist.org/packages/xp-forge/cookie-sessions)
+[![Latest Stable Version](https://poser.pugx.org/xp-forge/cookie-sessions/version.svg)](https://packagist.org/packages/xp-forge/cookie-sessions)
 
 Cookie-based session implementation for the [sessions library](https://github.com/xp-forge/sessions/pull/10). Purely client-side, they require no serverside storage and thus scale very well. However, they also come with downsides, [discussed below](https://github.com/xp-forge/cookie-sessions#security).
 

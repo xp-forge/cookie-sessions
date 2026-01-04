@@ -3,6 +3,10 @@ Cookie sessions for the XP Framework ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* **Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343
+  (@thekid)
+* Added PHP 8.5 and PHP 8.6 to the test matrix - @thekid
+
 ## 0.3.0 / 2024-03-24
 
 * Dropped support for XP <= 9, see xp-framework/rfc#341 - @thekid
